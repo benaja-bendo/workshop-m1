@@ -42,8 +42,13 @@ class UserController {
         goals: req.body.goals,
         birthday: req.body.birthday
       });
+
       await newUser.save();
-      res.status(201).json(newUser);
+
+      const userToReturn = newUser.toObject();
+      delete userToReturn.password;
+
+      res.status(201).json(userToReturn);
     } catch (err) {
       res.status(400).json({ message: err.message });
     }
@@ -79,19 +84,20 @@ class UserController {
         .exec();
 
       if (!user) {
-        return res.status(401).json({ message: 'Credenciaux incorrects' });
+        return res.status(401).json({ message: 'Email ou mot de passe incorrect' });
       }
 
       const isMatch = await bcrypt.compare(req.body.password, user.password);
 
       if (!isMatch) {
-        return res.status(401).json({ message: 'Credenciaux incorrects' });
+        return res.status(401).json({ message: 'Email ou mot de passe incorrect' });
       }
 
       const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
       res.json({ token });
     } catch (err) {
+      console.error('Erreur lors de la tentative de connexion:', err);
       res.status(500).json({ message: err.message });
     }
   }
