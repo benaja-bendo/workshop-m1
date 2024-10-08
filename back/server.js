@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 connectDB();
 
 // Routes
-app.use('/api/users', authMiddleware, userRoutes);
+app.use('/api/users', userRoutes);
 app.use('/api/plates', plateRoutes);
 app.use('/api/ingredients', ingredientRoutes);
 // Gestion des erreurs
