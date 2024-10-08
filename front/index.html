@@ -1,13 +1,281 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Home</title>
+  <link rel="stylesheet" href="home.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <div class="desktop-only">
+      <img src="public/logo-transparent-svg.svg" alt="Logo-app" style="height: 50px;">
+    </div>
+    <div class="right">
+      <nav class="tabs">
+        <ul>
+          <li><a href="#">Accueil</a></li>
+          <li><a href="#">Recette</a></li>
+          <li><a href="#">Nouveau</a></li>
+          <li><a href="#">Paramètres</a></li>
+          <li><a href="#">Profil</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div>Se connecter</div>
+  </div>
+
+  <div class="body">
+    <div class="menu">
+      <strong class="title-header">Découvrez votre recette idéale</strong>
+      <div class="all-filters" id="difficulty-filters">
+        <button class="filters">Facile</button>
+        <button class="filters">Moyen</button>
+        <button class="filters">Difficile</button>
+      </div>
+      <div class="search-container">
+        <input type="text" placeholder="Rechercher..." class="search-input">
+        <button class="search-button">
+          <img src="public/search.svg" alt="search">
+        </button>
+      </div>
+    </div>
+    <div class="items-center mb-4" style="margin-top: 75px;">
+      <div class="quiz">
+        <h2 class="text-2xl font-semibold title-quiz">Recettes en vedettes</h2>
+        <img src="public/Group 33507.svg" alt="rod" style="margin: 30px;">
+        <div class="all-filters" id="quiz-filters">
+          <button class="filters2">Toutes les recettes (156)</button>
+          <button class="filters2">Poulet rôti</button>
+          <button class="filters2">Salade d'été</button>
+          <button class="filters2">Crèpes à la farine d'avoine</button>
+          <button class="filters2">Dessert fruité</button>
+          <button class="filters2">Pancakes fluffy</button>
+          <button class="filters2">Sushi</button>
+          <button class="filters2">&gt;</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <img src="public/top-recettes-mars-2022-intro-mobile-1649250827.jpg" alt="Poulet rôti" class="card-image">
+        <div class="difficulty-badge">Difficile</div>
+        <div class="rating">
+          <div class="stars" style="position: relative; display: inline-block;">
+            <img src="public/star.svg" alt="Star" class="star">
+            <img src="public/star.svg" alt="Star" class="star">
+            <img src="public/star.svg" alt="Star" class="star">
+            <img src="public/star.svg" alt="Star" class="star">
+            <img src="public/star.svg" alt="Star" class="star">
+            <div class="filled-stars"
+              style="position: absolute; top: 0; left: 0; white-space: nowrap; overflow: hidden; width: 0%;">
+              <img src="public/star-full.svg" alt="Star" class="star">
+              <img src="public/star-full.svg" alt="Star" class="star">
+              <img src="public/star-full.svg" alt="Star" class="star">
+              <img src="public/star-full.svg" alt="Star" class="star">
+              <img src="public/star-full.svg" alt="Star" class="star">
+            </div>
+          </div>
+          <span class="rating-value">4.6/5</span>
+        </div>
+        <div class="card-content">
+          <p><strong style="color: #BD2949;">20</strong>/Min</p>
+          <h3>Poulet rôti</h3>
+          <div class="objectives">
+            <p>Remise en forme</p>
+            <p> | </p>
+            <p>Prise de masse</p>
+          </div>
+          <p class="author">Anne Liza</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="public/salade.jpg" alt="Salade d'été" class="card-image">
+        <div class="difficulty-badge">Facile</div>
+        <div class="rating">
+          <!-- 5 étoiles -->
+          <div class="stars" style="position: relative; display: inline-block;">
+            <!-- Grises (vides) -->
+            <img src="public/star.svg" alt="Star" class="star">
+            <img src="public/star.svg" alt="Star" class="star">
+            <img src="public/star.svg" alt="Star" class="star">
+            <img src="public/star.svg" alt="Star" class="star">
+            <img src="public/star.svg" alt="Star" class="star">
+
+            <!-- Jaunes (pleines) -->
+            <div class="filled-stars"
+              style="position: absolute; top: 0; left: 0; white-space: nowrap; overflow: hidden; width: 92%;">
+              <img src="public/star-full.svg" alt="Star" class="star">
+              <img src="public/star-full.svg" alt="Star" class="star">
+              <img src="public/star-full.svg" alt="Star" class="star">
+              <img src="public/star-full.svg" alt="Star" class="star">
+              <img src="public/star-full.svg" alt="Star" class="star">
+            </div>
+          </div>
+          <span class="rating-value">4.6/5</span>
+        </div>
+        <div class="card-content">
+          <p><strong style="color: #BD2949;">15</strong>/Min</p>
+          <h3>Salade d’été</h3>
+          <div class="objectives">
+            <p>Remise en forme</p>
+            <p> | </p>
+            <p>Perte de poids</p>
+          </div>
+          <p class="author">Anne Liza</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="public/crepes-avoine-banane.jpg" alt="Crêpes à la farine d'avoine" class="card-image">
+        <div class="difficulty-badge">Facile</div>
+        <div class="rating">
+          <div class="stars" style="position: relative; display: inline-block;">
+            <!-- Grises (vides) -->
+            <img src="public/star.svg" alt="Star" class="star">
+            <img src="public/star.svg" alt="Star" class="star">
+            <img src="public/star.svg" alt="Star" class="star">
+            <img src="public/star.svg" alt="Star" class="star">
+            <img src="public/star.svg" alt="Star" class="star">
+
+            <!-- Jaunes (pleines) -->
+            <div class="filled-stars"
+              style="position: absolute; top: 0; left: 0; white-space: nowrap; overflow: hidden; width: 0%;">
+              <img src="public/star-full.svg" alt="Star" class="star">
+              <img src="public/star-full.svg" alt="Star" class="star">
+              <img src="public/star-full.svg" alt="Star" class="star">
+              <img src="public/star-full.svg" alt="Star" class="star">
+              <img src="public/star-full.svg" alt="Star" class="star">
+            </div>
+          </div>
+          <span class="rating-value">4.6/5</span>
+        </div>
+        <div class="card-content">
+          <p><strong style="color: #BD2949;">15</strong>/Min</p>
+          <h3>Crêpes à la farine d'avoine</h3>
+          <p>Prise de masse</p>
+          <p class="author">Anne Liza</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="public/20240216_65cfa1c83a883.jpg" alt="Dessert fruité" class="card-image">
+        <div class="difficulty-badge">Difficile</div>
+        <div class="rating">
+          <div class="stars" style="position: relative; display: inline-block;">
+            <!-- Grises (vides) -->
+            <img src="public/star.svg" alt="Star" class="star">
+            <img src="public/star.svg" alt="Star" class="star">
+            <img src="public/star.svg" alt="Star" class="star">
+            <img src="public/star.svg" alt="Star" class="star">
+            <img src="public/star.svg" alt="Star" class="star">
+
+            <!-- Jaunes (pleines) -->
+            <div class="filled-stars"
+              style="position: absolute; top: 0; left: 0; white-space: nowrap; overflow: hidden; width: 0%;">
+              <img src="public/star-full.svg" alt="Star" class="star">
+              <img src="public/star-full.svg" alt="Star" class="star">
+              <img src="public/star-full.svg" alt="Star" class="star">
+              <img src="public/star-full.svg" alt="Star" class="star">
+              <img src="public/star-full.svg" alt="Star" class="star">
+            </div>
+          </div>
+          <span class="rating-value">4.6/5</span>
+        </div>
+        <div class="card-content">
+          <p><strong style="color: #BD2949;">10</strong>/Min</p>
+          <h3>Dessert fruité</h3>
+          <div class="objectives">
+            <p>Remise en forme</p>
+            <p> | </p>
+            <p>Perte de poids</p>
+          </div>
+          <p class="author">Anne Liza</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="public/fluffy.jpg" alt="Pancakes fluffy" class="card-image">
+        <div class="difficulty-badge">Moyenne</div>
+        <div class="rating">
+          <div class="stars" style="position: relative; display: inline-block;">
+            <!-- Grises (vides) -->
+            <img src="public/star.svg" alt="Star" class="star">
+            <img src="public/star.svg" alt="Star" class="star">
+            <img src="public/star.svg" alt="Star" class="star">
+            <img src="public/star.svg" alt="Star" class="star">
+            <img src="public/star.svg" alt="Star" class="star">
+
+            <!-- Jaunes (pleines) -->
+            <div class="filled-stars"
+              style="position: absolute; top: 0; left: 0; white-space: nowrap; overflow: hidden; width: 0%;">
+              <img src="public/star-full.svg" alt="Star" class="star">
+              <img src="public/star-full.svg" alt="Star" class="star">
+              <img src="public/star-full.svg" alt="Star" class="star">
+              <img src="public/star-full.svg" alt="Star" class="star">
+              <img src="public/star-full.svg" alt="Star" class="star">
+            </div>
+          </div>
+          <span class="rating-value">4.6/5</span>
+        </div>
+        <div class="card-content">
+          <p><strong style="color: #BD2949;">15</strong>/Min</p>
+          <h3>Pancakes fluffy</h3>
+          <p>Prise de masse</p>
+          <p class="author">Anne Liza</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="public/sushi.jpg" alt="Sushi et maki" class="card-image">
+        <div class="difficulty-badge">Difficile</div>
+        <div class="rating">
+          <div class="stars" style="position: relative; display: inline-block;">
+            <!-- Grises (vides) -->
+            <img src="public/star.svg" alt="Star" class="star">
+            <img src="public/star.svg" alt="Star" class="star">
+            <img src="public/star.svg" alt="Star" class="star">
+            <img src="public/star.svg" alt="Star" class="star">
+            <img src="public/star.svg" alt="Star" class="star">
+
+            <!-- Jaunes (pleines) -->
+            <div class="filled-stars"
+              style="position: absolute; top: 0; left: 0; white-space: nowrap; overflow: hidden; width: 0%;">
+              <img src="public/star-full.svg" alt="Star" class="star">
+              <img src="public/star-full.svg" alt="Star" class="star">
+              <img src="public/star-full.svg" alt="Star" class="star">
+              <img src="public/star-full.svg" alt="Star" class="star">
+              <img src="public/star-full.svg" alt="Star" class="star">
+            </div>
+          </div>
+          <span class="rating-value">4.6/5</span>
+        </div>
+        <div class="card-content">
+          <p><strong style="color: #BD2949;">45</strong>/Min</p>
+          <h3>Sushi et maki</h3>
+          <div class="objectives">
+            <p>Remise en forme</p>
+            <p> | </p>
+            <p>Amélioration de performance</p>
+          </div>
+          <p class="author">Anne Liza</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
 </html>
