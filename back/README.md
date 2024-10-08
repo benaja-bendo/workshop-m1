@@ -11,11 +11,12 @@ Ce projet est une API RESTful construite avec Node.js et utilisant MongoDB comme
 
 ## Installation
 
-Pour installer le projet :
+Pour installer le projet exécuter la commande suivante :
 ```bash
 npm install
 ```
-
+Puis, créez un fichier `.env` à la racine du projet et ajoutez les variables d'environnement
+comme indiquer dans le fichier `.env.sample`.
 
 ## Commandes disponibles
 
