@@ -5,7 +5,6 @@ Ce projet est une API RESTful construite avec Node.js et utilisant MongoDB comme
 ## Table des matières
 
 - [Installation](#installation)
-- [Structure du projet](#structure-du-projet)
 - [Commandes disponibles](#commandes-disponibles)
 - [Architecture](#architecture)
 - [Développement](#développement)
@@ -13,37 +12,17 @@ Ce projet est une API RESTful construite avec Node.js et utilisant MongoDB comme
 ## Installation
 
 Pour installer le projet :
+```bash
+npm install
+```
 
-`bash npm install`
-
-
-## Structure du projet
-
-Le projet est organisé de la manière suivante :
-
-node-api-mongodb/ 
-├── config/ 
-│ └── database.js 
-├── controllers/ 
-│ └── exampleController.js 
-├── middleware/ 
-│ └── authMiddleware.js 
-├── models/ 
-│ └── exampleModel.js 
-├── routes/ 
-│ └── exampleRoutes.js 
-├── utils/ 
-│ └── errorHandler.js 
-├── .env 
-├── .gitignore 
-├── package.json 
-└── server.js
 
 ## Commandes disponibles
 
 - `npm start`: Lance le serveur en mode production
 - `npm run dev`: Lance le serveur en mode développement avec nodemon
 - `npm run lint`: Exécute ESLint pour vérifier la qualité du code
+- `npm run test`: Exécute tous les tests
 
 ## Architecture
 
@@ -62,6 +41,4 @@ Pour ajouter une nouvelle fonctionnalité :
 2. Ajoutez un contrôleur correspondant dans `controllers/`
 3. Définissez les routes dans `routes/`
 4. Implémentez la logique métier dans le contrôleur
-5. Testez votre nouvelle fonctionnalité
-
-N'hésitez pas à contribuer au projet en soumettant des pull requests ou en signalant des bugs via les issues GitHub.
+5. Testez votre nouvelle fonctionnalité en rajoutant des tests dans `tests/`

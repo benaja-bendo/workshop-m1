@@ -30,7 +30,7 @@ app.use(ErrorHandler.handleErrors);
 
 module.exports = app;
 
-const ports = [process.env.PORT || 3000, 3001]; // Définissez les ports que vous souhaitez essayer
+const ports = [process.env.PORT || 3000, 3001, 3002,3003]; // Définissez les ports que vous souhaitez essayer
 
 const startServer = (port) => {
     app.listen(port, () => {
