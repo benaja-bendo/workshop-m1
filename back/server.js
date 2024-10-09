@@ -2,11 +2,13 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocs = require('./swagger');
 const connectDB = require('./config/database');
 const authMiddleware = require('./middleware/authMiddleware');
 const ErrorHandler = require('./utils/errorHandler');
 const userRoutes = require('./routes/userRoutes');
-const plateRoutes = require('./routes/plateRoutes');
+const recipeRoutes = require('./routes/recipeRoutes');
 const ingredientRoutes = require('./routes/ingredientRoutes');
 
 const app = express();
@@ -15,13 +17,21 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+// Documentation Swagger
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
+
 // Connexion à MongoDB
 connectDB();
 
 // Routes
 app.use('/api/users', userRoutes);
-app.use('/api/plates', plateRoutes);
+app.use('/api/recipes', recipeRoutes);
 app.use('/api/ingredients', ingredientRoutes);
+
+// Documentation Swagger
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
 // Gestion des erreurs
 app.use((req, res, next) => {
     res.status(404).json({ message: 'Route non trouvée' });

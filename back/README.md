@@ -18,6 +18,11 @@ npm install
 Puis, créez un fichier `.env` à la racine du projet et ajoutez les variables d'environnement
 comme indiquer dans le fichier `.env.sample`.
 
+## Documentation  
+
+http://localhost:3000/api-docs
+
+
 ## Commandes disponibles
 
 - `npm start`: Lance le serveur en mode production
