@@ -277,7 +277,74 @@
       </div>
     </div>
 
-    <script src="script.js"></script>
+    <script type="module">
+      // Fonction pour charger les recettes depuis l'API
+      async function loadRecipes() {
+        try {
+          // Appel à l'API pour récupérer les recettes
+          const response = await fetch('https://workshop-m1-back.onrender.com/api/recipes');
+          if (!response.ok) {
+            throw new Error('Erreur lors du chargement des recettes');
+          }
+
+          // Conversion de la réponse en JSON
+          const recipes = await response.json();
+
+          // Sélection de l'élément qui contiendra les cartes de recettes
+          const grid = document.querySelector('.grid');
+
+          // Efface le contenu existant
+          grid.innerHTML = '';
+
+          // Boucle à travers les recettes pour générer les cartes dynamiquement
+          recipes.forEach(recipe => {
+            // Création de l'élément de carte
+            const card = document.createElement('div');
+            card.className = 'card';
+
+            // Contenu de la carte
+            card.innerHTML = `
+              <img src="${recipe.imgSrc}" alt="${recipe.recipeName}" class="card-image">
+              <div class="difficulty-badge">${recipe.difficulty || 'N/A'}</div>
+              <div class="rating">
+                <div class="stars" style="position: relative; display: inline-block;">
+                  <img src="public/star.svg" alt="Star" class="star">
+                  <img src="public/star.svg" alt="Star" class="star">
+                  <img src="public/star.svg" alt="Star" class="star">
+                  <img src="public/star.svg" alt="Star" class="star">
+                  <img src="public/star.svg" alt="Star" class="star">
+                  <div class="filled-stars" style="position: absolute; top: 0; left: 0; white-space: nowrap; overflow: hidden; width: ${recipe.rating * 20}%;">
+                    <img src="public/star-full.svg" alt="Star" class="star">
+                    <img src="public/star-full.svg" alt="Star" class="star">
+                    <img src="public/star-full.svg" alt="Star" class="star">
+                    <img src="public/star-full.svg" alt="Star" class="star">
+                    <img src="public/star-full.svg" alt="Star" class="star">
+                  </div>
+                </div>
+                <span class="rating-value">${recipe.rating}/5</span>
+              </div>
+              <div class="card-content">
+                <p><strong style="color: #BD2949;">${recipe.totalTimeMinutes || 'N/A'}</strong>/Min</p>
+                <h3>${recipe.recipeName}</h3>
+                <div class="objectives">
+                  ${recipe.diet.map(diet => `<p>${diet}</p>`).join('<p> | </p>')}
+                </div>
+                <p class="author">${recipe.author || 'Auteur inconnu'}</p>
+              </div>
+            `;
+
+            // Ajoute la carte à la grille
+            grid.appendChild(card);
+          });
+        } catch (error) {
+          console.error(error);
+          alert('Erreur lors du chargement des recettes');
+        }
+      }
+
+      // Charger les recettes au chargement de la page
+      document.addEventListener('DOMContentLoaded', loadRecipes);
+    </script>
 </body>
 
 </html>
