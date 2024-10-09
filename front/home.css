@@ -46,6 +46,7 @@
 }
 
 .tabs ul li a {
+    list-style: none;
     text-decoration: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -223,25 +224,15 @@
 
 .difficulty-badge {
     position: absolute;
-    /* Permet de placer le badge au-dessus de l'image */
     top: 10px;
-    /* Distance du haut de la carte */
     right: 10px;
-    /* Distance du bord droit de la carte */
     background-color: #BD2949;
-    /* Couleur de fond du badge */
     color: white;
-    /* Couleur du texte */
     padding: 5px 10px;
-    /* Espacement intérieur */
     border-radius: 12px;
-    /* Coins arrondis */
     font-weight: bold;
-    /* Texte en gras */
     font-size: 0.8rem;
-    /* Taille de police */
     z-index: 1;
-    /* S'assure que le badge est au-dessus de l'image */
 }
 
 .rating {
@@ -250,69 +241,58 @@
 
 .objectives {
     display: flex;
-    /* Utilise le modèle Flexbox */
     flex-wrap: wrap;
-    /* Permet aux éléments de passer à la ligne si nécessaire */
     align-items: center;
-    /* Centre verticalement les éléments */
     margin-top: 5px;
-    /* Ajoute un petit espace au-dessus */
 }
 
 .objectives p,
 .objectives span {
     margin: 0;
-    /* Supprime la marge par défaut pour éviter les espaces indésirables */
     white-space: nowrap;
-    /* Empêche le passage à la ligne dans chaque élément */
 }
 
 .objectives p {
     margin-right: 5px;
-    /* Ajoute un espace entre les éléments */
 }
 
-/* Container pour les étoiles */
 .star-rating {
-    display: flex; /* Utilise flexbox pour aligner les étoiles */
-    font-size: 20px; /* Taille des étoiles */
-    color: #e0e0e0; /* Couleur des étoiles non remplies (gris) */
-    position: relative; /* Position relative pour gérer les étoiles internes */
+    display: flex; 
+    font-size: 20px; 
+    color: #e0e0e0; 
+    position: relative; 
 }
 
-/* Conteneur des étoiles intérieures */
 .stars-outer {
-    position: relative; /* Position relative pour le conteneur des étoiles */
-    width: 100%; /* Prend toute la largeur disponible */
-    overflow: hidden; /* Masque le dépassement */
+    position: relative; 
+    width: 100%; 
+    overflow: hidden; 
 }
 
-/* Les étoiles remplies */
 .stars-inner {
-    color: #FFD700; /* Couleur des étoiles remplies (jaune) */
-    position: absolute; /* Position absolue pour les étoiles remplies */
-    left: 0; /* Commence à gauche */
-    top: 0; /* Commence en haut */
-    white-space: nowrap; /* Pas de retour à la ligne */
+    color: #FFD700; 
+    position: absolute; 
+    left: 0; 
+    top: 0; 
+    white-space: nowrap; 
 }
 
-/* Taille des étoiles */
 .star {
-    display: inline-block; /* Utilise inline-block pour aligner les étoiles */
-    width: 20px; /* Largeur de l'étoile */
-    height: 20px; /* Hauteur de l'étoile */
-    background-size: contain; /* Assure que l'étoile s'adapte */
-    margin-right: 2px; /* Espace entre les étoiles */
+    display: inline-block; 
+    width: 20px; 
+    height: 20px; 
+    background-size: contain; 
+    margin-right: 2px; 
 }
 
 .star-full {
-    background-image: url('public/star-full.svg'); /* Chemin vers l'étoile pleine */
+    background-image: url('public/star-full.svg'); 
 }
 
 .star-half {
-    background-image: url('public/star-half.svg'); /* Chemin vers l'étoile à moitié pleine */
+    background-image: url('public/star-half.svg');
 }
 
 .star-empty {
-    background-image: url('public/star.svg'); /* Chemin vers l'étoile vide */
+    background-image: url('public/star.svg');
 }
