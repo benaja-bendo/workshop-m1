@@ -2,7 +2,7 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-class UserController {
+class UsController {
   async getAllUsers(req, res) {
     try {
       const users = await User.find().select('-password').exec();
@@ -97,10 +97,10 @@ class UserController {
 
       res.json({ token });
     } catch (err) {
-      console.error('Erreur lors de la tentative de connexion:', err);
+      console.error('Erreur lors de la tentative de connexion :', err);
       res.status(500).json({ message: err.message });
     }
   }
 }
 
-module.exports = UserController;
+module.exports = UsController;
