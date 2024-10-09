@@ -3,10 +3,11 @@
 const request = require('supertest');
 const app = require('../server'); // Assurez-vous d'avoir ce fichier dans votre projet
 const Recipe = require('../models/Recipe');
+const Ingredient = require('../models/Ingredient');
 
 describe('Recipe API', () => {
   beforeEach(async () => {
-    await Recipe.deleteMany({});
+    await Recipe.deleteMany({ testCreated: true }); // Supprime uniquement les ingrédients créés pour les tests
   });
 
   // Ajout d'un console log avant chaque test pour le diagnostic
@@ -29,7 +30,8 @@ describe('Recipe API', () => {
         directions: 'Mélanger les ingrédients.',
         rating: 4.5,
         diet: ['vegetarian'],
-        tags: ['été', 'frais']
+        tags: ['été', 'frais'],
+        testCreated: true
       });
       await recipe1.save();
 
@@ -57,7 +59,8 @@ describe('Recipe API', () => {
         directions: 'Faire bouillir les ingrédients.',
         rating: 5,
         diet: ['vegan'],
-        tags: ['hiver', 'réconfort']
+        tags: ['hiver', 'réconfort'],
+        testCreated: true
       });
       await recipe.save();
 
@@ -96,7 +99,8 @@ describe('Recipe API', () => {
           directions: 'Cuire à feu doux.',
           rating: 4,
           diet: ['gluten-free'],
-          tags: ['automne', 'confort']
+          tags: ['automne', 'confort'],
+          testCreated: true
         });
 
       console.log("POST /api/recipes response:", response.body); // Log de la réponse pour le diagnostic
@@ -120,7 +124,8 @@ describe('Recipe API', () => {
           directions: '',
           rating: 6, // Rating out of allowed range
           diet: ['invalid-diet'], // Invalid diet value
-          tags: []
+          tags: [],
+          testCreated: true
         });
 
       console.log("POST /api/recipes invalid data response:", response.body); // Log de la réponse pour le diagnostic
@@ -145,7 +150,8 @@ describe('Recipe API', () => {
         directions: 'Assemblez et cuisez.',
         rating: 4.5,
         diet: ['vegetarian'],
-        tags: ['hiver', 'italien']
+        tags: ['hiver', 'italien'],
+        testCreated: true
       });
       await recipe.save();
 
@@ -161,7 +167,8 @@ describe('Recipe API', () => {
         directions: 'Assemblez et cuisez avec des légumes.',
         rating: 5,
         diet: ['vegan'],
-        tags: ['hiver', 'italien']
+        tags: ['hiver', 'italien'],
+        testCreated: true
       };
 
       const response = await request(app)
@@ -207,7 +214,8 @@ describe('Recipe API', () => {
         directions: 'Cuire au four.',
         rating: 4,
         diet: ['vegetarian'],
-        tags: ['hiver']
+        tags: ['hiver'],
+        testCreated: true
       });
       await recipe.save();
 

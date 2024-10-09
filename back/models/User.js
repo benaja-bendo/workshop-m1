@@ -17,7 +17,11 @@ const userSchema = new mongoose.Schema({
   dietaryRegime: String,
   undesirableIngredients: Array,
   goals: Array,
-  birthday: Date
+  birthday: Date,
+  testCreated: {
+    type: Boolean,
+    default: false
+  }
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);

@@ -9,7 +9,11 @@ const ingredientSchema = new mongoose.Schema({
   proteins: Number,
   sugars: Number,
   salt: Number,
-  restrictions: [{ type: String }]
+  restrictions: [{ type: String }],
+  testCreated: {
+    type: Boolean,
+    default: false
+  }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Ingredient', ingredientSchema);
