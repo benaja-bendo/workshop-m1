@@ -10,6 +10,8 @@ const ErrorHandler = require('./utils/errorHandler');
 const userRoutes = require('./routes/userRoutes');
 const recipeRoutes = require('./routes/recipeRoutes');
 const ingredientRoutes = require('./routes/ingredientRoutes');
+const https = require('https'); // Importer le module https
+const fs = require('fs'); // Importer le module fs
 
 const app = express();
 
@@ -19,7 +21,6 @@ app.use(bodyParser.json());
 
 // Documentation Swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-
 
 // Connexion à MongoDB
 connectDB();
@@ -38,12 +39,18 @@ app.use((req, res, next) => {
 });
 app.use(ErrorHandler.handleErrors);
 
-module.exports = app;
+// Charger le certificat et la clé
+const options = {
+    key: fs.readFileSync('./certificat/server.key'), // Remplacez par le chemin vers votre clé
+    cert: fs.readFileSync('./certificat/server.cert') // Remplacez par le chemin vers votre certificat
+};
 
-const ports = [process.env.PORT || 3000, 3001, 3002,3003]; // Définissez les ports que vous souhaitez essayer
+// Définir les ports à essayer
+const ports = [process.env.PORT || 3000, 3001, 3002, 3003];
 
 const startServer = (port) => {
-    app.listen(port, () => {
+    const server = https.createServer(options, app); // Créer un serveur HTTPS
+    server.listen(port, () => {
         console.log(`Serveur démarré sur le port ${port}`);
     }).on('error', (err) => {
         if (err.code === 'EADDRINUSE') {
