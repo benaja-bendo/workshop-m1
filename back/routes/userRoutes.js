@@ -133,19 +133,19 @@ router.get('/:id', userController.getUserById);
  *             type: object
  *             properties:
  *               firstName:
- *                 type: string
+ *                 type: string (required)
  *                 description: Prénom de l'utilisateur
  *               lastName:
- *                 type: string
+ *                 type: string (required)
  *                 description: Nom de l'utilisateur
  *               username:
- *                 type: string
+ *                 type: string (required)
  *                 description: Nom d'utilisateur
  *               email:
- *                 type: string
+ *                 type: string (required)
  *                 description: Adresse email de l'utilisateur
  *               password:
- *                 type: string
+ *                 type: string (required)
  *                 description: Mot de passe de l'utilisateur
  *               weight:
  *                 type: number
@@ -238,19 +238,19 @@ router.post('/', userController.createUser);
  *             type: object
  *             properties:
  *               firstName:
- *                 type: string
+ *                 type: string (required)
  *                 description: Prénom de l'utilisateur
  *               lastName:
- *                 type: string
+ *                 type: string (required)
  *                 description: Nom de l'utilisateur
  *               username:
- *                 type: string
+ *                 type: string (required)
  *                 description: Nom d'utilisateur
  *               email:
- *                 type: string
+ *                 type: string (required)
  *                 description: Adresse email de l'utilisateur
  *               password:
- *                 type: string
+ *                 type: string (required)
  *                 description: Mot de passe de l'utilisateur
  *               weight:
  *                 type: number
@@ -361,10 +361,10 @@ router.delete('/:id', userController.deleteUser);
  *             type: object
  *             properties:
  *               email:
- *                 type: string
+ *                 type: string (required)
  *                 description: Adresse email de l'utilisateur
  *               password:
- *                 type: string
+ *                 type: string (required)
  *                 description: Mot de passe de l'utilisateur
  *     responses:
  *       200:

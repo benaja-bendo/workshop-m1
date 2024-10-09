@@ -6,7 +6,7 @@ const Ingredient = require('../models/Ingredient');
 
 describe('Ingredient API', () => {
   beforeEach(async () => {
-    await Ingredient.deleteMany({}); // Nettoyer la base de données avant chaque test
+    await Ingredient.deleteMany({ testCreated: true }); // Supprime uniquement les ingrédients créés pour les tests
   });
 
   describe('GET /api/ingredients', () => {
@@ -20,7 +20,8 @@ describe('Ingredient API', () => {
         proteins: 1,
         sugars: 4,
         salt: 0.1,
-        restrictions: ['allergie']
+        restrictions: ['allergie'],
+        testCreated: true
       });
       await ingredient1.save();
 
@@ -33,7 +34,8 @@ describe('Ingredient API', () => {
         proteins: 1.5,
         sugars: 8,
         salt: 0.05,
-        restrictions: []
+        restrictions: [],
+        testCreated: true
       });
       await ingredient2.save();
 
@@ -57,7 +59,8 @@ describe('Ingredient API', () => {
         proteins: 1.2,
         sugars: 9,
         salt: 0.08,
-        restrictions: ['diabète']
+        restrictions: ['diabète'],
+        testCreated: true
       });
       await ingredient.save();
 
@@ -89,7 +92,8 @@ describe('Ingredient API', () => {
           proteins: 1.1,
           sugars: 6,
           salt: 0.06,
-          restrictions: []
+          restrictions: [],
+          testCreated: true
         });
 
       expect(response.statusCode).toBe(201);
@@ -122,7 +126,8 @@ describe('Ingredient API', () => {
         proteins: 2,
         sugars: 15,
         salt: 0.02,
-        restrictions: ['diabète']
+        restrictions: ['diabète'],
+        testCreated: true
       });
       await ingredient.save();
 
@@ -135,7 +140,8 @@ describe('Ingredient API', () => {
         proteins: 2.1,
         sugars: 16,
         salt: 0.03,
-        restrictions: ['diabète']
+        restrictions: ['diabète'],
+        testCreated: true
       };
 
       const response = await request(app)
@@ -166,7 +172,8 @@ describe('Ingredient API', () => {
         proteins: 3,
         sugars: 1,
         salt: 0.05,
-        restrictions: []
+        restrictions: [],
+        testCreated: true
       });
       await ingredient.save();
 
