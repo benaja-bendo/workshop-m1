@@ -39,52 +39,70 @@
         <div class="container mx-auto px-6">
             <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Obtenez votre plan de repas personnalisé</h1>
 
-            <form class="bg-white shadow-md rounded-lg px-8 py-6 space-y-6 max-w-lg mx-auto">
-                <!-- Nom complet -->
+            <form class="bg-white shadow-md rounded-lg px-8 py-6 space-y-6 max-w-xl mx-auto">
+                <!-- Poids -->
                 <div>
-                    <label for="name" class="block text-gray-700 font-medium mb-2">Nom complet</label>
-                    <input type="text" id="name" name="name" placeholder="Entrez votre nom"
+                    <label for="weight" class="block text-gray-700 font-medium mb-2">Poids (kg)</label>
+                    <input type="number" id="weight" name="weight" placeholder="Entrez votre poids"
                         class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-customRed">
                 </div>
 
-                <!-- Email -->
+                <!-- Taille -->
                 <div>
-                    <label for="email" class="block text-gray-700 font-medium mb-2">Adresse Email</label>
-                    <input type="email" id="email" name="email" placeholder="Entrez votre email"
+                    <label for="height" class="block text-gray-700 font-medium mb-2">Taille (cm)</label>
+                    <input type="number" id="height" name="height" placeholder="Entrez votre taille"
                         class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-customRed">
                 </div>
 
-                <!-- Objectif physique -->
+                <!-- Régime alimentaire -->
                 <div>
-                    <label for="goal" class="block text-gray-700 font-medium mb-2">Objectif physique</label>
-                    <select id="goal" name="goal"
+                    <label for="dietaryRegime" class="block text-gray-700 font-medium mb-2">Régime alimentaire</label>
+                    <input type="text" id="dietaryRegime" name="dietaryRegime"
+                        placeholder="Ex. : Végétarien, Végétalien, etc."
                         class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-customRed">
-                        <option value="" disabled selected>Choisissez un objectif</option>
+                </div>
+
+                <!-- Régime alimentaire -->
+                <div>
+                    <label for="dietaryRegime" class="block text-gray-700 font-medium mb-2">Régime alimentaire</label>
+                    <select id="dietaryRegime" name="dietaryRegime"
+                        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-customRed">
+                        <option value="" disabled selected>Choisissez un régime alimentaire</option>
+                        <option value="omnivore">Omnivore</option>
+                        <option value="vegetarian">Végétarien</option>
+                        <option value="vegan">Végétalien</option>
+                        <option value="paleo">Paléo</option>
+                        <option value="keto">Keto</option>
+                        <option value="pescatarian">Pescétarien</option>
+                        <option value="gluten-free">Sans gluten</option>
+                        <option value="lactose-free">Sans lactose</option>
+                        <option value="mediterranean">Méditerranéen</option>
+                    </select>
+                </div>
+
+                <!-- Objectifs -->
+                <div>
+                    <label for="goals" class="block text-gray-700 font-medium mb-2">Objectifs</label>
+                    <select id="goals" name="goals" multiple
+                        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-customRed">
                         <option value="weight-loss">Perte de poids</option>
                         <option value="muscle-gain">Gain de masse musculaire</option>
-                        <option value="healthier">Alimentation plus saine</option>
+                        <option value="healthy-eating">Manger plus sainement</option>
+                        <option value="endurance">Améliorer l'endurance</option>
+                        <option value="flexibility">Augmenter la flexibilité</option>
+                        <option value="strength">Renforcer la force</option>
+                        <option value="performance">Améliorer les performances</option>
+                        <option value="toning">Se tonifier</option>
                     </select>
-                </div>
-
-                <!-- Niveau d'activité physique -->
-                <div>
-                    <label for="activity" class="block text-gray-700 font-medium mb-2">Niveau d'activité
-                        physique</label>
-                    <select id="activity" name="activity"
-                        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-customRed">
-                        <option value="" disabled selected>Choisissez votre niveau d'activité</option>
-                        <option value="sedentary">Sédentaire</option>
-                        <option value="light">Activité légère</option>
-                        <option value="moderate">Modérée</option>
-                        <option value="active">Active</option>
-                    </select>
+                    <p class="text-sm text-gray-500 mt-2">Maintenez la touche Ctrl (Windows) ou Command (Mac) pour
+                        sélectionner plusieurs options.</p>
                 </div>
 
                 <!-- Bouton de soumission -->
                 <div class="text-center">
                     <button type="submit"
                         class="bg-customRed text-white px-6 py-2 rounded hover:bg-customRedHover focus:outline-none focus:ring-2 focus:ring-customRedHover">
-                        Obtenir mon plan de repas
+                        Soumettre
                     </button>
                 </div>
             </form>
