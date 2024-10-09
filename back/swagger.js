@@ -1,6 +1,13 @@
 // swagger.js
 const swaggerJsDoc = require('swagger-jsdoc');
+// Détection de l'URL de l'API en fonction de l'environnement
+const getServerUrl = () => {
+  // Utiliser une variable d'environnement si elle est définie, par exemple pour Render ou Heroku
+  const baseUrl = process.env.BASE_URL;
 
+  // Si la variable d'environnement n'est pas définie, utilise localhost par défaut
+  return baseUrl ? `${baseUrl}/api` : 'http://localhost:3000/api';
+};
 // Configuration de Swagger JSDoc
 const swaggerOptions = {
   swaggerDefinition: {
@@ -12,7 +19,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: 'https://workshop-m1-back.onrender.com/api', // URL de l'API
+        url: getServerUrl(), // URL de l'API
       },
     ],
   },
