@@ -2,7 +2,7 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-class UsController {
+class UserController {
   async getAllUsers(req, res) {
     try {
       const users = await User.find().select('-password').exec();
@@ -103,4 +103,4 @@ class UsController {
   }
 }
 
-module.exports = UsController;
+module.exports = UserController;
