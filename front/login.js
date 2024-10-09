@@ -1,86 +1,85 @@
-// Attendre que le DOM soit complètement chargé avant d'exécuter le code
 document.addEventListener('DOMContentLoaded', function () {
-
     document.getElementById('signupForm')?.addEventListener('submit', function (event) {
         event.preventDefault();
 
+        // Récupération des valeurs des champs obligatoires
         const email = document.getElementById('email').value.trim();
         const password = document.getElementById('password').value.trim();
         const firstName = document.getElementById('firstName').value.trim();
         const lastName = document.getElementById('lastName').value.trim();
-        const guests = parseInt(document.getElementById('guests').value.trim(), 10);
-        const size = parseInt(document.getElementById('size').value.trim(), 10);
-        const weight = parseInt(document.getElementById('weight').value.trim(), 10);
-        const undesirableIngredients  = Array.from(document.getElementById('allergies').selectedOptions).map(option => option.value);
-        const goals = document.querySelector('input[name="objectif"]:checked')?.value;
+        const username = document.getElementById('username').value.trim();
 
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regex pour vérifier le format de l'email
+        // On initialise les valeurs des champs non obligatoires
+        const size = document.getElementById('size') ? parseInt(document.getElementById('size').value.trim(), 10) : null; // taille
+        const weight = document.getElementById('weight') ? parseInt(document.getElementById('weight').value.trim(), 10) : null;
+        const gender = document.querySelector('input[name="gender"]:checked') ? document.querySelector('input[name="gender"]:checked').value : null;
+        const dietaryRegime = document.querySelector('input[name="dietaryRegime"]:checked') ? document.querySelector('input[name="dietaryRegime"]:checked').value : null;
+        const birthDate = document.getElementById('birthDate') ? document.getElementById('birthDate').value : null;
+        const allergies = Array.from(document.getElementById('allergies').selectedOptions).map(option => option.value) || [];
+
+        // Validation des champs obligatoires
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         let valid = true;
         let errorMessage = '';
 
+        // Vérification de la validité des champs obligatoires
         if (!emailRegex.test(email)) {
             valid = false;
-            errorMessage += 'L\'adresse e-mail doit être valide (contient un @).\n';
-        }
-
-        if (firstName.length < 4) {
-            valid = false;
-            errorMessage += 'Le prénom doit contenir plus de 3 caractères.\n';
-        }
-
-        if (lastName.length < 4) {
-            valid = false;
-            errorMessage += 'Le nom doit contenir plus de 3 caractères.\n';
+            errorMessage += 'L\'adresse e-mail doit être valide.\n';
         }
 
         if (password.length < 4) {
             valid = false;
-            errorMessage += 'Le mot de passe doit contenir plus de 3 caractères.\n';
+            errorMessage += 'Le mot de passe doit comporter au moins 4 caractères.\n';
         }
 
-        if (guests <= 0) {
+        if (!firstName) {
             valid = false;
-            errorMessage += 'Le nombre de personnes doit être supérieur à 0.\n';
+            errorMessage += 'Le prénom est obligatoire.\n';
         }
 
-        if (size <= 0) {
+        if (!lastName) {
             valid = false;
-            errorMessage += 'La taille doit être supérieure à 0 cm.\n';
+            errorMessage += 'Le nom est obligatoire.\n';
         }
 
-        if (weight <= 0) {
+        if (!username) {
             valid = false;
-            errorMessage += 'Le poids doit être supérieur à 0 kg.\n';
+            errorMessage += 'Le nom d\'utilisateur est obligatoire.\n';
         }
-
 
         if (!valid) {
-            document.getElementById('errorMessage').innerText = errorMessage;
-            document.getElementById('errorMessage').classList.remove('hidden');
-        } else {
-            document.getElementById('errorMessage').classList.add('hidden');
-            PostUser({ email, password, firstName, lastName, guests, size, weight, undesirableIngredients, goals });
+            alert(errorMessage);
+            return;
         }
-    });
 
-    document.getElementById('loginForm')?.addEventListener('submit', function (event) {
-        event.preventDefault();
+        // Préparation des données à envoyer
+        const data = {
+            firstName,
+            lastName,
+            username,
+            email,
+            password,
+            size, // taille
+            weight,
+            gender,
+            dietaryRegime,
+            allergies,
+            birthDate
+        };
 
-        const userData = getUserLoginData();
-
-        PostUser(userData);
+        // Envoi des données à l'API
+        PostUser(data)
+            .then(response => {
+                console.log('Utilisateur créé avec succès :', response);
+                window.location.href = 'success.html';
+            })
+            .catch(error => {
+                console.error('Erreur lors de la création de l\'utilisateur :', error);
+            });
     });
 });
 
-// Fonction pour récupérer les données de connexion
-function getUserLoginData() {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-
-    return { email, password };
-}
-
-// Fonction pour envoyer les données à l'API
 async function PostUser(data) {
     try {
         const apiUrl = import.meta.env.VITE_API_URL;
@@ -89,7 +88,7 @@ async function PostUser(data) {
         const response = await fetch(`${apiUrl}${postUserEndpoint}`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json', // Type de contenu
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(data),
         });
@@ -98,9 +97,11 @@ async function PostUser(data) {
             throw new Error(`Erreur: ${response.status} ${response.statusText}`);
         }
 
-        const result = await response.json(); // Réponse de l'API en JSON
+        const result = await response.json();
         console.log('Réponse de l\'API:', result);
+        return result;
     } catch (error) {
         console.error('Erreur lors de l\'envoi des données:', error);
+        throw error;
     }
-}
+};
