@@ -12,7 +12,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: 'http://localhost:3000/api', // URL de l'API
+        url: 'https://workshop-m1-back.onrender.com/api', // URL de l'API
       },
     ],
   },
