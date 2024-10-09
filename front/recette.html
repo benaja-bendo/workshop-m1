@@ -5,60 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
+    <link rel="stylesheet" href="home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
     <script defer type="module" src="/src/recette.ts"></script>
 </head>
 
 <body>
-    <header class="bg-white shadow-lg"> 
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- Logo Section -->
-            <div class="text-2xl font-bold text-gray-800">
-                <a href="#" class="hover:text-blue-500">
-                    <img src="./logo_.png" alt="logo" class="w-24 h-auto" /> <!-- Ajoute les classes Tailwind ici -->
-                </a>
-            </div>
-
-            <!-- Navigation Menu for larger screens -->
-            <nav class="hidden md:flex space-x-6">
-                <a href="#" class="text-gray-600 hover:text-customRedHover">perde de poids</a>
-                <a href="#" class="text-gray-600 hover:text-customRedHover">prise de masse</a>
-                <a href="#" class="text-gray-600 hover:text-customRedHover">remise en forme </a>
-                <a href="#" class="text-gray-600 hover:text-customRedHover">se tonifier</a>
-                <a href="#" class="text-gray-600 hover:text-customRedHover">améliorer mes performances</a>
-            </nav>
-
-            <!-- CTA button -->
-            <div class="hidden md:block">
-                <a href="#" class="bg-customRed text-white px-4 py-2 rounded hover:bg-customRedHover">recette</a>
-            </div>
-
-            <!-- Mobile menu button -->
-            <div class="md:hidden">
-                <button class="text-gray-600 focus:outline-none" id="menuButton">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-            </div>
+    <div class="header">
+        <div class="desktop-only">
+            <img src="public/logo-transparent-svg.svg" alt="Logo-app" style="height: 50px;">
         </div>
-
-        <!-- Mobile Menu -->
-        <div class="md:hidden" id="mobileMenu" style="display: none;">
-            <nav class="flex flex-col space-y-2 px-6 py-4">
-                <a href="#" class="text-gray-600 hover:text-customRedHover">perde de poids</a>
-                <a href="#" class="text-gray-600 hover:text-customRedHover">prise de masse</a>
-                <a href="#" class="text-gray-600 hover:text-customRedHover">remise en forme </a>
-                <a href="#" class="text-gray-600 hover:text-customRedHover">se tonifier</a>
-                <a href="#" class="text-gray-600 hover:text-customRedHover">améliorer mes performances</a>
-                <a href="#" class="bg-customRed text-white px-4 py-2 rounded hover:bg-customRedHover">recette</a>
+        <div class="right">
+            <nav class="tabs">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="recette.html" style="color: #BD2949;">Recette</a></li>
+                    <li><a href="#">Nouveau</a></li>
+                    <li><a href="#">Paramètres</a></li>
+                    <li><a href="#">Profil</a></li>
+                </ul>
             </nav>
         </div>
-    </header>
+        <div>Se connecter</div>
+    </div>
 
-    <main class="bg-gray-50 py-8">
+    <main class="bg-gray-50 py-8" style="background: linear-gradient(to right, #DE6C2C, #C74C66); margin: -8px;">
         <div class="container mx-auto px-6">
             <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Obtenez votre plan de repas personnalisé</h1>
 
