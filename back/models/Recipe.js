@@ -15,6 +15,9 @@ const recipeSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  recipeType: {
+    type: String,
+  },
   totalTimeMinutes: {
     type: Number,
     integer: true
@@ -24,7 +27,11 @@ const recipeSchema = new mongoose.Schema({
     integer: true
   },
   ingredients: {
-    type: Object,
+    type: Map,
+    of: new mongoose.Schema({
+      amount: { type: Number, required: true },
+      unit: { type: String, default: null }
+    }),
     default: {}
   },
   directions: {
@@ -40,7 +47,11 @@ const recipeSchema = new mongoose.Schema({
     type: String
   },
   nutrition: {
-    type: Object,
+    type: Map,
+    of: new mongoose.Schema({
+      amount: { type: String, required: true },
+      percent: { type: String, default: null }
+    }),
     default: {}
   },
   imgSrc: {
@@ -48,7 +59,7 @@ const recipeSchema = new mongoose.Schema({
   },
   diet: {
     type: [String],
-    enum: ['vegetarian', 'vegan', 'gluten-free', 'low-carb','omnivore','pescitarian']
+    enum: ['vegetarian', 'vegan', 'gluten-free', 'low-carb', 'omnivore', 'pescitarian']
   },
   tags: {
     type: [String]

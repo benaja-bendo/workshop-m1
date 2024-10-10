@@ -1,9 +1,9 @@
 import json
 
 # Chemin du fichier JSON d'entrée (celui que vous avez)
-input_file = './data/recipes.json'
+input_file = './data/recipes_translated.json'
 # Chemin du fichier JSON de sortie (formaté pour MongoDB)
-output_file = 'recipesMongoDB.json'
+output_file = 'recipesMongoDB_translated.json'
 
 # Charger les données depuis le fichier JSON d'entrée
 with open(input_file, 'r', encoding='utf-8') as file:
@@ -17,6 +17,7 @@ for recipe_id, recipe_details in data.items():
     formatted_document = {
         "id": recipe_id,
         "recipeName": recipe_details.get("recipe_name"),
+        "recipe_type": recipe_details.get("recipe_type"),
         "totalTimeMinutes": recipe_details.get("total_time_minutes"),
         "servings": recipe_details.get("servings"),
         "ingredients": recipe_details.get("ingredients"),

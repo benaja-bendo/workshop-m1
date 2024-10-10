@@ -35,6 +35,7 @@ class RecipeController {
         id: req.body.id,
         recipeId: req.body.recipeId,
         recipeName: req.body.recipeName,
+        recipeType: req.body.recipeType,
         totalTimeMinutes: req.body.totalTimeMinutes,
         servings: req.body.servings,
         ingredients: req.body.ingredients,
