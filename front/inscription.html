@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .checkbox {
+            display: flex;
+            align-items: baseline;
+        }
+    </style>
+</head>
+
+<body>
+<section class="min-h-screen flex items-stretch text-white">
+    <div class="lg:flex lg:w-full hidden bg-gray-500 bg-no-repeat bg-cover relative items-center"
+         style="background: url('./singinUp-img.jpg') no-repeat center; background-size: cover; position: fixed; width: 50%; height: 100vh; right: 0; top: 0;">
+        <div class="absolute bg-black opacity-60 inset-0 z-0"></div>
+        <div class="w-full px-24 z-10">
+            <a href="index.html">
+                <img src="public/logo-transparent-png.png" alt="Logo-app"
+                     style="height: 200px; position: relative; z-index: 10;">
+            </a>
+        </div>
+    </div>
+    <div class="lg:w-1/2 w-full flex items-center justify-center text-center md:px-16 px-0 z-0"
+         style="background: linear-gradient(to right, #DE6C2C, #C74C66)">
+        <div class="lg:hidden w-full hidden bg-gray-500 bg-no-repeat bg-cover relative items-center"
+             style="background: url('./singinUp-img.jpg');">
+            <div class="absolute bg-black opacity-60 inset-0 z-0"></div>
+        </div>
+        <div class="w-full py-6 z-20 ">
+            <div class="justify-center mt-12 grid justify-items-center md:mt-20 mb-20">
+                <div class="h-auto bg-tendre-brown rounded-xl md:rounded-3xl w-80 md:w-96">
+                    <div class="p-6 md:p-8">
+                        <a href="index.html" class="lg:hidden mx-auto">
+                            <img src="public/logo-transparent-png.png" alt="Logo-app"
+                                 style="height: 200px; position: relative; z-index: 10;">
+                        </a>
+                        <h1 class="mb-12 text-3xl font-light text-white">
+                            Inscription
+                        </h1>
+                        <!-- Formulaire -->
+                        <form id="signupForm">
+                            <!-- Email -->
+                            <div class="mb-8">
+                                <label for="email" class="block text-sm font-medium text-white">Email</label>
+                                <input type="text" id="email"
+                                       class="w-full px-4 py-2 mt-1 bg-transparent border border-white rounded-md text-white focus:ring-white focus:border-white"
+                                       required />
+                            </div>
+
+                            <!-- Prénom -->
+                            <div class="mb-8">
+                                <label for="firstName" class="block text-sm font-medium text-white">Prénom</label>
+                                <input type="text" id="firstName"
+                                       class="w-full px-4 py-2 mt-1 bg-transparent border border-white rounded-md text-white focus:ring-white focus:border-white"
+                                       required />
+                            </div>
+
+                            <!-- Nom -->
+                            <div class="mb-8">
+                                <label for="lastName" class="block text-sm font-medium text-white">Nom</label>
+                                <input type="text" id="lastName"
+                                       class="w-full px-4 py-2 mt-1 bg-transparent border border-white rounded-md text-white focus:ring-white focus:border-white"
+                                       required />
+                            </div>
+
+                            <!-- Nom d'utilisateur -->
+                            <div class="mb-8">
+                                <label for="username" class="block text-sm font-medium text-white">Nom d'utilisateur</label>
+                                <input type="text" id="username"
+                                       class="w-full px-4 py-2 mt-1 bg-transparent border border-white rounded-md text-white focus:ring-white focus:border-white"
+                                       required />
+                            </div>
+
+                            <!-- Mot de passe -->
+                            <div class="mb-8">
+                                <label for="password" class="block text-sm font-medium text-white">Mot de passe</label>
+                                <input type="password" id="password"
+                                       class="w-full px-4 py-2 mt-1 bg-transparent border border-white rounded-md text-white focus:ring-white focus:border-white"
+                                       required />
+                            </div>
+
+                            <!-- Taille (hauteur) -->
+                            <div class="mb-8">
+                                <label for="height" class="block text-sm font-medium text-white">Taille (en cm)</label>
+                                <input type="number" id="height"
+                                       class="w-full px-4 py-2 mt-1 bg-transparent border border-white rounded-md text-white focus:ring-white focus:border-white"
+                                       required />
+                            </div>
+
+                            <!-- Poids -->
+                            <div class="mb-8">
+                                <label for="weight" class="block text-sm font-medium text-white">Poids (en kg)</label>
+                                <input type="number" id="weight"
+                                       class="w-full px-4 py-2 mt-1 bg-transparent border border-white rounded-md text-white focus:ring-white focus:border-white"
+                                       required />
+                            </div>
+
+                            <!-- Sexe  -->
+                            <div class="mb-8 flex flex-col items-start">
+                                <label class="block text-sm font-medium text-white mx-auto">Genre</label>
+                                <div class="mt-2 text-sm">
+                                    <label class="checkbox">
+                                        <input type="radio" name="gender" value="male" class="form-checkbox text-indigo-600">
+                                        <span class="ml-2">Homme</span>
+                                    </label>
+                                </div>
+                                <div class="mt-2 text-sm">
+                                    <label class="checkbox">
+                                        <input type="radio" name="gender" value="female" class="form-checkbox text-indigo-600">
+                                        <span class="ml-2">Femme</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Régime alimentaire -->
+                            <div class="mb-8 flex flex-col items-start">
+                                <label class="block text-sm font-medium text-white mx-auto">Régime alimentaire</label>
+                                <div class="mt-2 text-sm">
+                                    <label class="checkbox">
+                                        <input type="radio" id="vegetarien" name="dietaryRegime" value="vegetarien" class="mr-2">
+                                        <span>Végétarien</span>
+                                    </label>
+                                </div>
+                                <div class="mt-2 text-sm">
+                                    <label class="checkbox">
+                                        <input type="radio" id="vegan" name="dietaryRegime" value="vegan" class="mr-2">
+                                        <span>Vegan</span>
+                                    </label>
+                                </div>
+                                <div class="mt-2 text-sm">
+                                    <label class="checkbox">
+                                        <input type="radio" id="aucun" name="dietaryRegime" value="aucun" class="mr-2">
+                                        <span>Aucun</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Intolérances ou allergies alimentaires -->
+                            <div class="mb-6">
+                                <label for="allergies" class="block text-sm font-medium text-white">Intolérances ou allergies alimentaires</label>
+                                <select id="allergies"
+                                        class="w-full px-4 py-2 mt-1 bg-transparent border border-white rounded-md text-white focus:ring-white focus:border-white"
+                                        multiple>
+                                    <option value="lactose">Lactose</option>
+                                    <option value="oeuf">Oeuf</option>
+                                    <option value="arachides">Arachides</option>
+                                    <option value="fruit">Fruits</option>
+                                    <option value="viande">Viande</option>
+                                    <option value="poisson">Poisson</option>
+                                </select>
+                            </div>
+
+                            <!-- Objectifs -->
+                            <div class="mb-8 flex flex-col items-start">
+                                <label class="block text-sm font-medium text-white mx-auto">Objectifs</label>
+                                <div class="mt-2 text-sm">
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="objectif" value="perte de poids" class="form-checkbox text-indigo-600">
+                                        <span class="ml-2">Perte de poids</span>
+                                    </label>
+                                </div>
+                                <div class="mt-2 text-sm">
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="objectif" value="prise de masse" class="form-checkbox text-indigo-600">
+                                        <span class="ml-2">Prise de masse</span>
+                                    </label>
+                                </div>
+                                <div class="mt-2 text-sm">
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="objectif" value="remise en forme" class="form-checkbox text-indigo-600">
+                                        <span class="ml-2">Remise en forme</span>
+                                    </label>
+                                </div>
+                                <div class="mt-2 text-sm">
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="objectif" value="se tonifier" class="form-checkbox text-indigo-600">
+                                        <span class="ml-2">Se tonifier</span>
+                                    </label>
+                                </div>
+                                <div class="mt-2 text-sm">
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="objectif" value="vivre plus sainement" class="form-checkbox text-indigo-600">
+                                        <span class="ml-2">Vivre plus sainement</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Bouton de soumission -->
+                            <div>
+                                <button type="submit"
+                                        class="w-full px-4 py-2 bg-gray-800 text-white font-medium text-lg rounded-md hover:bg-indigo-700 focus:ring-indigo-500">
+                                    S'inscrire
+                                </button>
+                            </div>
+                        </form>
+                        <p class="text-white mt-6">Deja membre ?
+                            <a href="se-connecter.html" class="ml-2 text-slate-200 hover:underline">Se connecter</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+</body>
+<script type="module" src="login.js"></script>
+</html>

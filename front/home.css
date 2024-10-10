@@ -1,0 +1,298 @@
+.header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 65px;
+    margin: -8px;
+}
+
+.header img {
+    max-width: 100%;
+    /* Définit la largeur maximale de l'image à 100% de la largeur du conteneur parent */
+    height: auto;
+    /* Garde le rapport hauteur/largeur de l'image */
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 45vh;
+    padding: 20px;
+    background: linear-gradient(to right, #DE6C2C, #C74C66);
+}
+
+/* Styles pour les écrans de bureau */
+.desktop-only {
+    display: block;
+}
+
+/* Styles pour les écrans de téléphone */
+@media (max-width: 768px) {
+    .desktop-only {
+        display: none;
+    }
+}
+
+.tabs ul {
+    list-style: none;
+    /* Supprime les points de la liste */
+    display: flex;
+    gap: 20px;
+    /* Espacement entre les onglets */
+    margin: 0;
+    padding: 0;
+}
+
+.tabs ul li a {
+    list-style: none;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #000;
+    font-weight: bold;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+.tabs ul li a:hover {
+    color: #BD2949;
+}
+
+.tabs ul li a.active {
+    color: #BD2949;
+}
+
+.title-header {
+    margin-bottom: 20px;
+    /* Espacement entre le titre et les filtres */
+    font-size: 24px;
+    /* Ajuste la taille de la police */
+    text-align: center;
+    /* Centre le texte du titre */
+}
+
+.all-filters {
+    display: flex;
+    /* Utilise flexbox pour aligner les filtres horizontalement */
+    gap: 15px;
+    /* Espacement entre les boutons de filtre */
+    margin-bottom: 20px;
+    /* Espacement entre les filtres et la barre de recherche */
+}
+
+.filters {
+    padding: 2px 14px;
+    /* Espacement interne des boutons */
+    border: none;
+    /* Supprime la bordure */
+    border-radius: 30px;
+    /* Coins arrondis */
+    background-color: #fff;
+    /* Couleur de fond des boutons */
+    color: #000;
+    /* Couleur du texte */
+    cursor: pointer;
+    /* Curseur en forme de main au survol */
+}
+
+.filters:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.filters2 {
+    padding: 2px 14px;
+    /* Espacement interne des boutons */
+    border: none;
+    /* Supprime la bordure */
+    border-radius: 30px;
+    /* Coins arrondis */
+    background-color: #ccc;
+    /* Couleur de fond des boutons */
+    color: #000;
+    /* Couleur du texte */
+    cursor: pointer;
+    /* Curseur en forme de main au survol */
+}
+
+.filters2:hover {
+    background-color: #BD2949;
+    color: #fff;
+}
+
+.search-container {
+    display: flex;
+    /* Utilise flexbox pour aligner les éléments */
+    align-items: center;
+    /* Centre verticalement les éléments */
+    position: relative;
+    /* Nécessaire pour positionner le bouton */
+}
+
+.search-input {
+    width: 475px;
+    height: 50px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    /* Coins arrondis pour le champ de texte */
+    padding: 10px 40px 10px 20px;
+    /* Espacement interne : ajout d'espace à droite pour le bouton */
+}
+
+.search-button {
+    position: absolute;
+    right: 6px;
+    background-color: #BD2949;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.search-button img {
+    width: 20px;
+    /* Ajuste la taille de l'image */
+    height: 20px;
+    /* Ajuste la taille de l'image */
+}
+
+.body {
+    margin: -8px;
+}
+
+.title-quiz {
+    display: flex;
+    justify-content: center;
+}
+
+.quiz {
+    display: grid;
+    justify-items: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+    padding: 50px;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    position: relative;
+    /* Nécessaire pour le positionnement absolu du badge */
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-image {
+    width: 100%;
+    /* Prend toute la largeur de la carte */
+    height: 200px;
+    /* Définissez une hauteur fixe */
+    object-fit: cover;
+    /* Recadre l'image pour couvrir le conteneur */
+}
+
+.card-content {
+    padding: 16px;
+}
+
+.card-content h3 {
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+.card-content p {
+    margin: 4px 0;
+}
+
+.difficulty-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #BD2949;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    z-index: 1;
+}
+
+.rating {
+    margin: 5px 0px 0px 15px;
+}
+
+.objectives {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.objectives p,
+.objectives span {
+    margin: 0;
+    white-space: nowrap;
+}
+
+.objectives p {
+    margin-right: 5px;
+}
+
+.star-rating {
+    display: flex; 
+    font-size: 20px; 
+    color: #e0e0e0; 
+    position: relative; 
+}
+
+.stars-outer {
+    position: relative; 
+    width: 100%; 
+    overflow: hidden; 
+}
+
+.stars-inner {
+    color: #FFD700; 
+    position: absolute; 
+    left: 0; 
+    top: 0; 
+    white-space: nowrap; 
+}
+
+.star {
+    display: inline-block; 
+    width: 20px; 
+    height: 20px; 
+    background-size: contain; 
+    margin-right: 2px; 
+}
+
+.star-full {
+    background-image: url('public/star-full.svg'); 
+}
+
+.star-half {
+    background-image: url('public/star-half.svg');
+}
+
+.star-empty {
+    background-image: url('public/star.svg');
+}
