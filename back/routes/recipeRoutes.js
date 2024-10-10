@@ -142,7 +142,77 @@ router.get('/', recipeController.getAllRecipes);
  *         description: Erreur interne du serveur
  */
 router.get('/:id', recipeController.getRecipeById);
-
+/**
+ * @swagger
+ * /recipes/get-personalize-menu/{id}:
+ *   get:
+ *     summary: Récupérer un menu personnalisé pour un utilisateur
+ *     tags: [Recipe]
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: ID de l'utilisateur pour lequel récupérer le menu personnalisé
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Menu personnalisé récupéré avec succès
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 menu:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       recipeId:
+ *                         type: string
+ *                       recipeName:
+ *                         type: string
+ *                       totalTimeMinutes:
+ *                         type: integer
+ *                       servings:
+ *                         type: integer
+ *                       ingredients:
+ *                         type: array
+ *                         items:
+ *                           type: string
+ *                       directions:
+ *                         type: array
+ *                         items:
+ *                           type: string
+ *                       rating:
+ *                         type: number
+ *                       url:
+ *                         type: string
+ *                       nutrition:
+ *                         type: object
+ *                         properties:
+ *                           calories:
+ *                             type: number
+ *                           protein:
+ *                             type: number
+ *                           carbs:
+ *                             type: number
+ *                           fat:
+ *                             type: number
+ *                       imgSrc:
+ *                         type: string
+ *                       diet:
+ *                         type: string
+ *                       tags:
+ *                         type: array
+ *                         items:
+ *                           type: string
+ *       400:
+ *         description: ID de l'utilisateur invalide
+ *       500:
+ *         description: Erreur interne du serveur
+ */
+router.get('/get-personalize-menu/:id', recipeController.getAllRecipesWithUser);
 /**
  * @swagger
  * /recipes:
