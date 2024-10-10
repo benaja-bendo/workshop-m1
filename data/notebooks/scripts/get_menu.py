@@ -65,20 +65,20 @@ def filter_recipes(recipes, diet, tags):
     return filtered_recipes
 
 
-def parse_nutritional_values(nutrition, recipe_servings, servings):
+def parse_nutritional_values(nutrition, recipe_servings):
     parsed_values = {}
     for key, value in nutrition.items():
         amount = value['amount']
         if 'mg' in amount:
-            parsed_values[key] = servings * (float(amount.replace('mg', '')) / 1000) / recipe_servings
+            parsed_values[key] = (float(amount.replace('mg', '')) / 1000) / recipe_servings
         elif 'g' in amount:
-            parsed_values[key] = servings * (float(amount.replace('g', ''))) / recipe_servings
+            parsed_values[key] = (float(amount.replace('g', ''))) / recipe_servings
         elif 'kcal' in amount:
-            parsed_values[key] = servings * (float(amount.replace('kcal', ''))) / recipe_servings
+            parsed_values[key] = (float(amount.replace('kcal', ''))) / recipe_servings
     return parsed_values
 
 
-def find_meals(recipes, daily_requirements, servings, margin=0.1):
+def find_meals(recipes, daily_requirements):
 
     categories = {
         "breakfast": ["Petit déjeuner et brunch"],
@@ -133,7 +133,7 @@ def find_meals(recipes, daily_requirements, servings, margin=0.1):
     breakfast = [(recipe_id, recipe) for recipe_id, recipe in categorized_recipes['breakfast'].items()]
     random.shuffle(breakfast)
     recipe_id, recipe = breakfast[0]
-    nutritional_values = parse_nutritional_values(recipe['nutrition'], recipe['servings'], servings)
+    nutritional_values = parse_nutritional_values(recipe['nutrition'], recipe['servings'])
     selected_meals['breakfast'] = recipe_id
     update_nutri(nutritional_values)
 
@@ -141,11 +141,11 @@ def find_meals(recipes, daily_requirements, servings, margin=0.1):
     appetizers = [(recipe_id, recipe) for recipe_id, recipe in categorized_recipes['appetizer'].items()]
     random.shuffle(appetizers)
     recipe_id, recipe = appetizers[0]
-    nutritional_values = parse_nutritional_values(recipe['nutrition'], recipe['servings'], servings)
+    nutritional_values = parse_nutritional_values(recipe['nutrition'], recipe['servings'])
     selected_meals['appetizer_1'] = recipe_id
     update_nutri(nutritional_values)
     recipe_id, recipe = appetizers[1]
-    nutritional_values = parse_nutritional_values(recipe['nutrition'], recipe['servings'], servings)
+    nutritional_values = parse_nutritional_values(recipe['nutrition'], recipe['servings'])
     selected_meals['appetizer_2'] = recipe_id
     update_nutri(nutritional_values)
 
@@ -154,11 +154,11 @@ def find_meals(recipes, daily_requirements, servings, margin=0.1):
     main_courses = [(recipe_id, recipe) for recipe_id, recipe in categorized_recipes['main_course'].items()]
     random.shuffle(main_courses)
     recipe_id, recipe = main_courses[0]
-    nutritional_values = parse_nutritional_values(recipe['nutrition'], recipe['servings'], servings)
+    nutritional_values = parse_nutritional_values(recipe['nutrition'], recipe['servings'])
     selected_meals['main_course_1'] = recipe_id
     update_nutri(nutritional_values)
     recipe_id, recipe = main_courses[1]
-    nutritional_values = parse_nutritional_values(recipe['nutrition'], recipe['servings'], servings)
+    nutritional_values = parse_nutritional_values(recipe['nutrition'], recipe['servings'])
     selected_meals['main_course_2'] = recipe_id
     update_nutri(nutritional_values)
 
@@ -167,11 +167,11 @@ def find_meals(recipes, daily_requirements, servings, margin=0.1):
     desserts = [(recipe_id, recipe) for recipe_id, recipe in categorized_recipes['desert'].items()]
     random.shuffle(desserts)
     recipe_id, recipe = desserts[0]
-    nutritional_values = parse_nutritional_values(recipe['nutrition'], recipe['servings'], servings)
+    nutritional_values = parse_nutritional_values(recipe['nutrition'], recipe['servings'])
     selected_meals['desert_1'] = recipe_id
     update_nutri(nutritional_values)
     recipe_id, recipe = desserts[1]
-    nutritional_values = parse_nutritional_values(recipe['nutrition'], recipe['servings'], servings)
+    nutritional_values = parse_nutritional_values(recipe['nutrition'], recipe['servings'])
     selected_meals['desert_2'] = recipe_id
     update_nutri(nutritional_values)
 
@@ -180,13 +180,13 @@ def find_meals(recipes, daily_requirements, servings, margin=0.1):
 
 
 
-def get_menu(filtered_recipes, daily_requirements, servings):
+def get_menu(filtered_recipes, daily_requirements):
     best_score = 1000
     best_meals = None
     selected_meals = None
     start_time = time.time()
     while selected_meals == None:
-        selected_meals, score = find_meals(filtered_recipes, daily_requirements, servings)
+        selected_meals, score = find_meals(filtered_recipes, daily_requirements)
         if score < MARGIN:
             return selected_meals
         elif score < best_score:
