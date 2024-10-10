@@ -148,6 +148,13 @@
                            class="w-full px-4 py-2 mt-1 bg-transparent border border-white rounded-md text-white focus:ring-white focus:border-white"
                            required />
                 </div>
+                <!-- Nom d'utilisateur -->
+                <div class="mb-8">
+                    <label for="username" class="block text-sm font-medium text-white">Nom d'utilisateur</label>
+                    <input type="text" id="username"
+                           class="w-full px-4 py-2 mt-1 bg-transparent border border-white rounded-md text-white focus:ring-white focus:border-white"
+                           required />
+                </div>
 
                 <!-- Nom d'utilisateur -->
                 <div class="mb-8">
@@ -204,6 +211,52 @@
                     <input type="date" id="birthday"
                            class="w-full px-4 py-2 mt-1 bg-transparent border border-white rounded-md text-white focus:ring-white focus:border-white"
                            required />
+
+                <!-- Champ pour le genre -->
+                <div class="mb-8 flex items-start flex-col">
+                    <p class="text-white mb-4 mx-auto">Genre</p>
+                    <div class="mb-4">
+                        <input type="radio" id="homme" name="gender" value="homme" class="mr-2">
+                        <label for="homme">Homme</label>
+                    </div>
+                    <div class="mb-4">
+                        <input type="radio" id="femme" name="gender" value="femme" class="mr-2">
+                        <label for="femme">Femme</label>
+                    </div>
+                </div>
+
+                <!-- Champ pour le régime alimentaire -->
+                <div class="mb-8 flex items-start flex-col">
+                    <p class="text-white mb-4 mx-auto">Régime alimentaire</p>
+                    <div class="mb-4">
+                        <input type="radio" id="vegetarien" name="dietaryRegime" value="vegetarien" class="mr-2">
+                        <label for="vegetarien">Végétarien</label>
+                    </div>
+                    <div class="mb-4">
+                        <input type="radio" id="vegan" name="dietaryRegime" value="vegan" class="mr-2">
+                        <label for="vegan">Vegan</label>
+                    </div>
+                    <div class="mb-4">
+                        <input type="radio" id="aucun" name="dietaryRegime" value="aucun" class="mr-2">
+                        <label for="aucun">Aucun</label>
+                    </div>
+                </div>
+
+
+                <!-- Intolérances ou allergies alimentaires -->
+                <div class="mb-6">
+                    <label for="allergies" class="block text-sm font-medium text-white">Intolérances ou allergies
+                        alimentaires</label>
+                    <select id="allergies"
+                        class="w-full px-4 py-2 mt-1 bg-transparent border border-white rounded-md text-white focus:ring-white focus:border-white"
+                        multiple>
+                        <option value="lactose">Lactose</option>
+                        <option value="oeuf">Oeuf</option>
+                        <option value="arachides">Arachides</option>
+                        <option value="fruit">Fruits</option>
+                        <option value="viande">Viande</option>
+                        <option value="poisson">Poisson</option>
+                    </select>
                 </div>
 
                 <!-- Objectifs -->
@@ -309,5 +362,5 @@
     </div>
 
 </body>
-
+<script type="module" src="login.js"></script>
 </html>
