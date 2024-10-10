@@ -51,19 +51,15 @@ def daily_nutritional_requirements(weight, height, age, gender, activity_level, 
 
 
 def filter_recipes(recipes, diet, tags):
-    # Define dietary categories
     dietary_categories = {
         'omnivore': ['omnivore', 'pescatarian', 'vegetarian', 'vegan'],
         'pescatarian': ['pescatarian', 'vegetarian', 'vegan'],
         'vegetarian': ['vegetarian', 'vegan'],
         'vegan': ['vegan']
     }
-    # Filter recipes based on diet
     filtered_recipes = {uuid : recipe for uuid, recipe in recipes.items() if recipe['diet'] in dietary_categories[diet]}
-    # Filter recipes based on allergens
     filtered_recipes = {uuid : recipe for uuid, recipe in filtered_recipes.items() if not any(tag in recipe['tags'] for tag in tags)}
     return filtered_recipes
-
 
 def parse_nutritional_values(nutrition, recipe_servings):
     parsed_values = {}
@@ -77,16 +73,35 @@ def parse_nutritional_values(nutrition, recipe_servings):
             parsed_values[key] = (float(amount.replace('kcal', ''))) / recipe_servings
     return parsed_values
 
-
-def find_meals(recipes, daily_requirements):
-
+def categorize_recipes(recipes):
     categories = {
         "breakfast": ["Petit déjeuner et brunch"],
         "appetizer": ["Salade", "Apéritifs et collations", "Recettes de soupes, ragoûts et chili", "Recettes de soupes"],
         "main_course": ["Plat d'accompagnement", "Plats principaux", "Viandes et volailles", "Fruit de mer", "Barbecue et grillades"],
         "desert": ["Desserts"]
     }
+    categorized_recipes = {category: {} for category in categories}
+    for recipe_id, recipe in recipes.items():
+        for category, types in categories.items():
+            if recipe['recipe_type'] in types:
+                categorized_recipes[category][recipe_id] = recipe
+    return categorized_recipes
 
+# Helper function to check if nutritional values are within the margin
+def within_margin(total_nutritional_values, daily_requirements):
+    keys_to_check = ['Calories', 'Total Carbohydrate', 'Protein', 'Total Fat']
+    abs_differences = []
+    for key in keys_to_check:
+        if key in total_nutritional_values:
+            abs_differences.append(np.abs((total_nutritional_values[key] - daily_requirements[key]) / daily_requirements[key]))
+        else:
+            abs_differences.append(0)
+    score = np.average(abs_differences, weights=[4, 1, 1, 1])
+    return score
+
+
+def find_meals(recipes, daily_requirements):
+    categorized_recipes = categorize_recipes(recipes)
     selected_meals = {
         "breakfast": None,
         "appetizer_1": None,
@@ -96,28 +111,6 @@ def find_meals(recipes, daily_requirements):
         "main_course_2": None,
         "desert_2": None
     }
-
-    # Filter recipes by category
-    categorized_recipes = {category: {} for category in categories}
-    for recipe_id, recipe in recipes.items():
-        for category, types in categories.items():
-            if recipe['recipe_type'] in types:
-                categorized_recipes[category][recipe_id] = recipe
-
-    # Helper function to check if nutritional values are within the margin
-    def within_margin(total_nutritional_values, daily_requirements):
-        keys_to_check = ['Calories', 'Total Carbohydrate', 'Protein', 'Total Fat']
-        abs_differences = []
-        for key in keys_to_check:
-            if key in total_nutritional_values:
-                abs_differences.append(np.abs((total_nutritional_values[key] - daily_requirements[key]) / daily_requirements[key]))
-            else:
-                abs_differences.append(0)
-        score = np.average(abs_differences, weights=[4, 1, 1, 1])
-        return score
-
-
-    # Initialize total nutritional values
     total_nutritional_values = {
         'Calories': 0,
         'Total Carbohydrate': 0,
@@ -129,55 +122,21 @@ def find_meals(recipes, daily_requirements):
         for key in total_nutritional_values.keys():
             total_nutritional_values[key] += nutritional_values.get(key, 0)
 
-    # Select breakfast
-    breakfast = [(recipe_id, recipe) for recipe_id, recipe in categorized_recipes['breakfast'].items()]
-    random.shuffle(breakfast)
-    recipe_id, recipe = breakfast[0]
-    nutritional_values = parse_nutritional_values(recipe['nutrition'], recipe['servings'])
-    selected_meals['breakfast'] = recipe_id
-    update_nutri(nutritional_values)
+    def select_meal(category, num_meals=1):
+        meals = [(recipe_id, recipe) for recipe_id, recipe in categorized_recipes[category].items()]
+        random.shuffle(meals)
+        for i in range(num_meals):
+            recipe_id, recipe = meals[i]
+            nutritional_values = parse_nutritional_values(recipe['nutrition'], recipe['servings'])
+            selected_meals[f'{category}_{i+1}' if num_meals > 1 else category] = recipe_id
+            update_nutri(nutritional_values)
 
-    # Select two appetizers
-    appetizers = [(recipe_id, recipe) for recipe_id, recipe in categorized_recipes['appetizer'].items()]
-    random.shuffle(appetizers)
-    recipe_id, recipe = appetizers[0]
-    nutritional_values = parse_nutritional_values(recipe['nutrition'], recipe['servings'])
-    selected_meals['appetizer_1'] = recipe_id
-    update_nutri(nutritional_values)
-    recipe_id, recipe = appetizers[1]
-    nutritional_values = parse_nutritional_values(recipe['nutrition'], recipe['servings'])
-    selected_meals['appetizer_2'] = recipe_id
-    update_nutri(nutritional_values)
-
-
-    # Select two main courses
-    main_courses = [(recipe_id, recipe) for recipe_id, recipe in categorized_recipes['main_course'].items()]
-    random.shuffle(main_courses)
-    recipe_id, recipe = main_courses[0]
-    nutritional_values = parse_nutritional_values(recipe['nutrition'], recipe['servings'])
-    selected_meals['main_course_1'] = recipe_id
-    update_nutri(nutritional_values)
-    recipe_id, recipe = main_courses[1]
-    nutritional_values = parse_nutritional_values(recipe['nutrition'], recipe['servings'])
-    selected_meals['main_course_2'] = recipe_id
-    update_nutri(nutritional_values)
-
-
-    # Select two desserts
-    desserts = [(recipe_id, recipe) for recipe_id, recipe in categorized_recipes['desert'].items()]
-    random.shuffle(desserts)
-    recipe_id, recipe = desserts[0]
-    nutritional_values = parse_nutritional_values(recipe['nutrition'], recipe['servings'])
-    selected_meals['desert_1'] = recipe_id
-    update_nutri(nutritional_values)
-    recipe_id, recipe = desserts[1]
-    nutritional_values = parse_nutritional_values(recipe['nutrition'], recipe['servings'])
-    selected_meals['desert_2'] = recipe_id
-    update_nutri(nutritional_values)
-
+    select_meal('breakfast', 'breakfast')
+    select_meal('appetizer', num_meals=2)
+    select_meal('main_course', num_meals=2)
+    select_meal('desert', num_meals=2)
     score = within_margin(total_nutritional_values, daily_requirements)
     return selected_meals, score
-
 
 
 def get_menu(filtered_recipes, daily_requirements):
@@ -200,6 +159,7 @@ def get_menu(filtered_recipes, daily_requirements):
 
 
 def main():
+
     # Récupère les arguments
     recipes = sys.argv[1] # json des recettes
     diet = sys.argv[2]    # 'omnivore' | 'pescitarian' | 'vegetarian' | 'vegan'
@@ -217,6 +177,7 @@ def main():
     if gender == None: gender = 'male'
     activity_level = sys.argv[10] # 'sedentary' | 'lightly active' | 'moderately active' | 'very active' | 'super active'
     if activity_level == None: activity_level = 'moderately active'
+
     filtered_recipes = filter_recipes(recipes, diet, tags)
     daily_requirements = daily_nutritional_requirements(weight, height, age, gender, activity_level, goal)
     menu = get_menu(filtered_recipes, daily_requirements)
