@@ -219,7 +219,7 @@ def main():
     if activity_level == None: activity_level = 'moderately active'
     filtered_recipes = filter_recipes(recipes, diet, tags)
     daily_requirements = daily_nutritional_requirements(weight, height, age, gender, activity_level, goal)
-    menu = get_menu(filtered_recipes, daily_requirements, servings)
+    menu = get_menu(filtered_recipes, daily_requirements)
     return {key: recipes[key] for key in menu.values()}
 
 
