@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script defer type="module" src="/src/recette.ts"></script>
+</head>
+
+<body>
+    <header class="bg-white shadow-lg"> 
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo Section -->
+            <div class="text-2xl font-bold text-gray-800">
+                <a href="#" class="hover:text-blue-500">
+                    <img src="./logo_.png" alt="logo" class="w-24 h-auto" /> <!-- Ajoute les classes Tailwind ici -->
+                </a>
+            </div>
+
+            <!-- Navigation Menu for larger screens -->
+            <nav class="hidden md:flex space-x-6">
+                <a href="#" class="text-gray-600 hover:text-customRedHover">perde de poids</a>
+                <a href="#" class="text-gray-600 hover:text-customRedHover">prise de masse</a>
+                <a href="#" class="text-gray-600 hover:text-customRedHover">remise en forme </a>
+                <a href="#" class="text-gray-600 hover:text-customRedHover">se tonifier</a>
+                <a href="#" class="text-gray-600 hover:text-customRedHover">améliorer mes performances</a>
+            </nav>
+
+            <!-- CTA button -->
+            <div class="hidden md:block">
+                <a href="#" class="bg-customRed text-white px-4 py-2 rounded hover:bg-customRedHover">recette</a>
+            </div>
+
+            <!-- Mobile menu button -->
+            <div class="md:hidden">
+                <button class="text-gray-600 focus:outline-none" id="menuButton">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden" id="mobileMenu" style="display: none;">
+            <nav class="flex flex-col space-y-2 px-6 py-4">
+                <a href="#" class="text-gray-600 hover:text-customRedHover">perde de poids</a>
+                <a href="#" class="text-gray-600 hover:text-customRedHover">prise de masse</a>
+                <a href="#" class="text-gray-600 hover:text-customRedHover">remise en forme </a>
+                <a href="#" class="text-gray-600 hover:text-customRedHover">se tonifier</a>
+                <a href="#" class="text-gray-600 hover:text-customRedHover">améliorer mes performances</a>
+                <a href="#" class="bg-customRed text-white px-4 py-2 rounded hover:bg-customRedHover">recette</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="bg-gray-50 py-8">
+        <div class="container mx-auto px-6">
+          <!-- Section Recette du jour -->
+          <section class="mb-12">
+            <h1 class="text-3xl font-bold text-gray-800 mb-4 text-center">Recette du jour</h1>
+            <div class="bg-white shadow-md rounded-lg p-6">
+              <div class="flex flex-col md:flex-row">
+                <!-- Image de la recette -->
+                <div class="md:w-1/2">
+                  <img src="chemin-vers-image-recette.jpg" alt="Recette du jour" class="w-full h-auto rounded-lg">
+                </div>
+                <!-- Détails de la recette -->
+                <div class="md:w-1/2 md:pl-8">
+                  <h2 class="text-2xl font-bold text-gray-800 mb-2">Titre de la Recette</h2>
+                  <p class="text-gray-600 mb-4">Description courte de la recette, expliquant ses bienfaits ou son origine.</p>
+                  <h3 class="text-lg font-semibold text-gray-700 mb-2">Ingrédients :</h3>
+                  <ul class="list-disc list-inside mb-4 text-gray-600">
+                    <li>Ingrédient 1</li>
+                    <li>Ingrédient 2</li>
+                    <li>Ingrédient 3</li>
+                    <li>Ingrédient 4</li>
+                  </ul>
+                  <h3 class="text-lg font-semibold text-gray-700 mb-2">Instructions :</h3>
+                  <ol class="list-decimal list-inside text-gray-600">
+                    <li>Étape 1 : Préparez...</li>
+                    <li>Étape 2 : Mélangez...</li>
+                    <li>Étape 3 : Faites cuire...</li>
+                    <li>Étape 4 : Servez et dégustez.</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </section>
+      
+          <!-- Section Liste de recettes pour suivre le régime -->
+          <section>
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">Autres recettes pour votre régime</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <!-- Carte de recette 1 -->
+              <div class="bg-white shadow-md rounded-lg p-4">
+                <img src="chemin-vers-image-recette1.jpg" alt="Recette 1" class="w-full h-40 object-cover rounded-lg mb-4">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Nom de la Recette 1</h3>
+                <p class="text-gray-600 mb-4">Description courte de la recette 1.</p>
+                <a href="#" class="text-customRed hover:text-customRedHover font-semibold">Voir la recette</a>
+              </div>
+              <!-- Carte de recette 2 -->
+              <div class="bg-white shadow-md rounded-lg p-4">
+                <img src="chemin-vers-image-recette2.jpg" alt="Recette 2" class="w-full h-40 object-cover rounded-lg mb-4">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Nom de la Recette 2</h3>
+                <p class="text-gray-600 mb-4">Description courte de la recette 2.</p>
+                <a href="#" class="text-customRed hover:text-customRedHover font-semibold">Voir la recette</a>
+              </div>
+              <!-- Carte de recette 3 -->
+              <div class="bg-white shadow-md rounded-lg p-4">
+                <img src="chemin-vers-image-recette3.jpg" alt="Recette 3" class="w-full h-40 object-cover rounded-lg mb-4">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Nom de la Recette 3</h3>
+                <p class="text-gray-600 mb-4">Description courte de la recette 3.</p>
+                <a href="#" class="text-customRed hover:text-customRedHover font-semibold">Voir la recette</a>
+              </div>
+              <!-- Ajoutez plus de cartes de recettes si nécessaire -->
+            </div>
+          </section>
+        </div>
+      </main>
+
+    <script>
+        const menuButton = document.getElementById('menuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuButton.addEventListener('click', () => {
+            mobileMenu.style.display = mobileMenu.style.display === 'none' ? 'block' : 'none';
+        });
+    </script>
+</body>
+
+</html>
